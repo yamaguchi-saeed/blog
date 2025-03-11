@@ -1,0 +1,49 @@
+<%= form_with(model: article) do |form| %> <% if article.errors.any? %>
+<div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 mb-4 rounded">
+	<h2 class="font-bold">
+		<%= pluralize(article.errors.count, "件のエラー")
+		%>により保存できませんでした:
+	</h2>
+	<ul class="list-disc ml-5">
+		<% article.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<div class="mb-4">
+	<%= form.label :title, "タイトル", class: "block text-gray-700 font-bold
+	mb-2" %> <%= form.text_field :title, class: "w-full px-3 py-2 border
+	border-gray-300 rounded focus:outline-none focus:border-blue-500" %>
+</div>
+
+<div class="mb-4">
+	<%= form.label :category_id, "カテゴリ", class: "block text-gray-700
+	font-bold mb-2" %> <%= form.collection_select :category_id, Category.all,
+	:id, :name, { include_blank: "カテゴリを選択" }, class: "w-full px-3 py-2
+	border border-gray-300 rounded focus:outline-none focus:border-blue-500" %>
+</div>
+
+<div class="mb-4">
+	<%= form.label :tag_ids, "タグ", class: "block text-gray-700 font-bold mb-2"
+	%> <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+	<div class="flex items-center mb-2">
+		<%= b.check_box class: "mr-2" %> <%= b.label class: "text-gray-700" %>
+	</div>
+	<% end %>
+</div>
+
+<div class="mb-4">
+	<%= form.label :content, "内容", class: "block text-gray-700 font-bold mb-2"
+	%> <%= form.text_area :content, rows: 10, class: "w-full px-3 py-2 border
+	border-gray-300 rounded focus:outline-none focus:border-blue-500" %>
+</div>
+
+<div class="flex space-x-2">
+	<%= form.submit "保存", class: "bg-blue-500 hover:bg-blue-600 text-white
+	px-4 py-2 rounded cursor-pointer" %> <%= link_to "キャンセル",
+	articles_path, class: "bg-gray-500 hover:bg-gray-600 text-white px-4 py-2
+	rounded" %>
+</div>
+<% end %>

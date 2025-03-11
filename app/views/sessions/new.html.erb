@@ -1,0 +1,28 @@
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+	<h1 class="text-2xl font-bold mb-6 text-center">ログイン</h1>
+
+	<%= form_with(scope: :session, url: login_path) do |form| %>
+	<div class="mb-4">
+		<%= form.label :email, "メールアドレス", class: "block text-gray-700
+		font-bold mb-2" %> <%= form.email_field :email, class: "w-full px-3 py-2
+		border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+		%>
+	</div>
+
+	<div class="mb-6">
+		<%= form.label :password, "パスワード", class: "block text-gray-700
+		font-bold mb-2" %> <%= form.password_field :password, class: "w-full
+		px-3 py-2 border border-gray-300 rounded focus:outline-none
+		focus:border-blue-500" %>
+	</div>
+
+	<div class="flex items-center justify-between">
+		<%= form.submit "ログイン", class: "bg-blue-500 hover:bg-blue-600
+		text-white px-4 py-2 rounded cursor-pointer" %>
+		<span class="text-sm text-gray-600">
+			アカウントをお持ちでない方は <%= link_to "新規登録", signup_path,
+			class: "text-blue-500 hover:underline" %>
+		</span>
+	</div>
+	<% end %>
+</div>

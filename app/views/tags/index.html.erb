@@ -1,0 +1,11 @@
+<div class="bg-white p-6 rounded-lg shadow-md">
+	<h1 class="text-2xl font-bold mb-6">タグ一覧</h1>
+
+	<div class="flex flex-wrap gap-3">
+		<% @tags.each do |tag| %> <%= link_to tag_path(tag), class: "bg-gray-200
+		text-gray-700 px-3 py-2 rounded text-sm hover:bg-gray-300" do %> <%=
+		tag.name %>
+		<span class="text-gray-500">(<%= tag.articles.count %>)</span>
+		<% end %> <% end %>
+	</div>
+</div>
